@@ -42,9 +42,13 @@ feature_graph = load_graph_from_json('feature_graph.json')
 # Example code:
 
 from pyvis.network import Network
-nt = Network()
-nt.from_nx(workpiece_graph)
-nt.show("graph.html", notebook=False)
+wnt = Network()
+wnt.from_nx(workpiece_graph)
+wnt.show("workpiece_graph.html", notebook=False)
+
+fnt = Network()
+fnt.from_nx(feature_graph)
+fnt.show("feature_graph.html", notebook=False)
 
 # ##################################################
 # 3) Check if the feature graph is a subgraph of the workpiece workpiece and find any other matching subgraphs
