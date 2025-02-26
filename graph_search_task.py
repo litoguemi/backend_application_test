@@ -75,4 +75,11 @@ else:
 
 # Print results if matches are found. Return the number of matches and the node ids.
 
-# TODO
+# Retrieve the matching subgraphs
+subgraph_mapping = GM.mapping
+
+num_matches = len(subgraph_mapping)
+print(f"Number of matches: {num_matches}")
+
+result = (subgraph_mapping, num_matches)
+print("Subgraph mappings: ", result[0])
