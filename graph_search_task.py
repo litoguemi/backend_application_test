@@ -1,5 +1,6 @@
 import networkx as nx
 import json
+from networkx.algorithms import isomorphism
 
 # ##################################################
 # 1) Load workpiece graph and feature graph data from  json file
@@ -54,8 +55,19 @@ fnt.show("feature_graph.html", notebook=False)
 # 3) Check if the feature graph is a subgraph of the workpiece workpiece and find any other matching subgraphs
 # ##################################################
 
+def node_match(n1, n2):
+    return n1['type'] == n2['type'] and n1['cavity'] == n2['cavity']
 
-# TODO
+def edge_match(e1, e2):
+    return e1['angular_type'] == e2['angular_type']
+
+# Checking if the feature graph is a subgraph of the workpiece graph
+GM = isomorphism.GraphMatcher(workpiece_graph, feature_graph, node_match=node_match, edge_match=edge_match)
+
+if GM.subgraph_is_isomorphic():
+    print("Feature graph is a subgraph of the workpiece graph.")    
+else:
+    print("The feature graph is not a subgraph of the workpiece graph.")
 
 # ##################################################
 # 4) Results
